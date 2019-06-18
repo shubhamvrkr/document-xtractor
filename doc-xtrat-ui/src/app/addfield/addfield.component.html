@@ -1,0 +1,25 @@
+<mat-card class="example-card">
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]='name'>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Section" [(ngModel)]='section'>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [(value)]="selected" placeholder="Select">
+        <mat-option value="TEXT">TEXT</mat-option>
+        <mat-option value="NUMBER">NUMBER</mat-option>
+        <mat-option value="DATE">DATE</mat-option>
+        <mat-option value="BARCODE">BARCODE</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="selected==='DATE'">
+      <input matInput placeholder="Format" [(ngModel)]='format'>
+    </mat-form-field>
+  </div>
+  <mat-card-actions>
+    <button  mat-button color="warn" (click)="close()">CLOSE</button>
+    <button  mat-button color= "primary"(click)="add()">ADD</button>
+  </mat-card-actions>
+</mat-card>

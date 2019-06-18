@@ -1,0 +1,19 @@
+<mat-dialog-content class="selected-list-form">
+  <mat-list>
+    <h2 class = "header" mat-subheader>Selected Field List</h2>
+    <div *ngFor="let page of pages">
+        <h3 class = "sub-header" mat-subheader>{{page.id}}</h3>
+        <mat-list-item class="matlist" *ngFor="let field of page.fields">
+          <mat-icon mat-list-icon>{{field.type==='TEXT' ? 'title' : field.type==='DATE' ? 'date_range' : 'dialpad'}}</mat-icon>
+          <h6 style="font-size:14px; color: #808080" mat-line><b>Label: {{field.name}}</b></h6>
+          <p style="font-size:14px; color: #606060" mat-line> Section: {{field.section}} </p>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+
+    </div>
+  </mat-list>
+  <mat-card-actions style="float:right;">
+    <button id="close-button" color="warn" (click)="close()" mat-button>CLOSE</button>
+   <button id="save-button" color="primary" (click)="save()"  mat-button>SAVE</button>
+ </mat-card-actions>
+</mat-dialog-content>

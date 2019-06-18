@@ -1,0 +1,54 @@
+<div style="height: 100%" >
+  <mat-horizontal-stepper [selectedIndex]="stepperIndex" #stepper>
+     <mat-step [stepControl] = "firstFormGroup">
+          <ng-template matStepLabel>Upload Template</ng-template>
+          <div class="form1-holder">
+            <div>
+              <button mat-flat-button color="warn" (click)="onClick()" type="button">
+                <mat-icon>file_upload</mat-icon>Upload
+              </button>
+              <br/>
+              <input type="file" id="fileUpload" name="fileUpload" multiple="false" accept="application/pdf" style="display:none;" />
+            </div>
+            <div class="pdf-viewer">
+              <pdf-viewer style="display:block;" [src]="pdfSrc" [original-size]="false" [show-all]="false"
+                [page]="page"
+                (after-load-complete)="afterLoadComplete($event)">
+              </pdf-viewer>
+            </div>
+            <mat-checkbox [(ngModel)] = cropEnabled>smart crop</mat-checkbox>
+            <div style="text-align: center; margin:5px;">
+              <button color="accent" mat-button (click)="prevPage()" [disabled]="page <= 1 ">Prev</button>
+              <span>{{ page }} / {{ totalPages }}</span>
+              <button color="accent" mat-button (click)="nextPage()" [disabled]="page >= totalPages || page ===0">Next</button>
+            </div>
+            <mat-progress-bar mode="query" *ngIf="IsWait"></mat-progress-bar>
+            <button id="next-button" [disabled]="nextDisabled" mat-raised-button color="primary" (click)="validateFormAndMoveNext(cropEnabled)" >Next</button>
+          </div>
+     </mat-step>
+     <mat-step [stepControl] = "secondFormGroup">
+           <ng-template matStepLabel>Field Selection</ng-template>
+           <div class="form2-holder">
+               <button style="float:left;" mat-button color="primary" (click)="viewSelectedList()">View Selected Fields</button>
+               <form style="float:right;" class="example-form">
+                  <mat-form-field>
+                    <input matInput placeholder="Document Code" name="docCode" [(ngModel)]="templates.docCode">
+                  </mat-form-field>
+               </form>
+             <div id="image-holder" class="field-marker">
+                 <canvas (mouseleave)="onMouseLeave($event)" (mousedown)="onMouseDown($event)"  (mousemove)="onMouseMove($event)" (mouseup)="onMouseUp($event)" id="myCanvas"></canvas>
+                 <!-- <ngx-image-viewer (mousedown)="onMouseDown($event)"  (mousemove)="onMouseMove($event)" (mouseup)="onMouseUp($event)" [src]="images" [(index)]="imageIndex">
+                 </ngx-image-viewer> -->
+             </div>
+             <div style="text-align: center; margin:5px;">
+               <button color="accent" mat-button (click)="loadImageToCanvas(imageIndex-1)" [disabled]="imageIndex <= 0 ">Prev</button>
+               <button color="accent" mat-button (click)="loadImageToCanvas(imageIndex+1)" [disabled]="imageIndex >= images.length-1 || images.length ===0">Next</button>
+             </div>
+              <button id="next-button" mat-raised-button color="primary" mat-button (click)="saveTemplate()">Submit</button>
+           </div>
+     </mat-step>
+     <mat-step [stepControl] = "thirdFormGroup">
+           <ng-template matStepLabel>Done</ng-template>
+     </mat-step>
+  </mat-horizontal-stepper>
+</div>

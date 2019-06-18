@@ -1,0 +1,29 @@
+.selected-list-form{
+    min-height: 100%;
+    min-width: 100%;
+}
+.header{
+  height: 15px;
+  color: #FFFFFF;
+  background-color: #4527A0;
+  font-size: 18px;
+}
+.sub-header{
+  padding-left: 15px;
+  height: 10px;
+  font-size: 16px;
+  background-color: #69F0AE
+}
+.matlist{
+  background-color: #ECECEC;
+}
+.save-button{
+  float: right;
+  right:    0;
+  bottom:   0;
+  margin: 10px;
+}
+.close-button{
+  float: left;
+  margin: 10px;
+}

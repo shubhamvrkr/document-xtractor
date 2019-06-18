@@ -1,0 +1,28 @@
+<div style="min-width: 100%;" >
+  <div class="form1-holder">
+    <div>
+      <button mat-flat-button color="warn" (click)="onClick()" type="button">
+        <mat-icon>file_upload</mat-icon>Upload
+      </button>
+      <br/>
+      <input type="file" id="fileUpload" name="fileUpload" multiple="false" accept="application/pdf" style="display:none;" />
+    </div>
+    <div class="pdf-viewer">
+      <pdf-viewer style="display:block;" [src]="pdfSrc" [original-size]="false" [show-all]="false"
+        [page]="page"
+        (after-load-complete)="afterLoadComplete($event)">
+      </pdf-viewer>
+    </div>
+    <mat-checkbox [(ngModel)] = cropEnabled>smart crop</mat-checkbox>
+    <div style="text-align: center; margin:5px;">
+      <button color="accent" mat-button (click)="prevPage()" [disabled]="page <= 1 ">Prev</button>
+      <span>{{ page }} / {{ totalPages }}</span>
+      <button color="accent" mat-button (click)="nextPage()" [disabled]="page >= totalPages || page ===0">Next</button>
+    </div>
+    <div class="progress">
+      <mat-progress-bar mode="query" *ngIf="IsWait"></mat-progress-bar>
+    </div>
+    <button id="next-button" [disabled]="disableNext" mat-raised-button color="primary" (click)="validateFormAndMoveNext(cropEnabled)" >Next</button>
+  </div>
+
+</div>

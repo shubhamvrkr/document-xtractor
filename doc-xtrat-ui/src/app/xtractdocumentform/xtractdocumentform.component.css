@@ -1,0 +1,44 @@
+#next-button{
+  float: right;
+  right:    0;
+  bottom:   0;
+  margin: 5px;
+}
+#myCanvas{
+  min-width:100%;
+  min-height:100%;
+}
+.pdf-viewer{
+  margin: 0 auto;
+  max-width:200px;
+  min-width:200px;
+  min-height:300px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border-style: double;
+  border-width: 3px;
+}
+.field-marker{
+    clear: both;
+    display: block;
+    min-width:100%;
+    min-height: 100%;
+    border-style: solid;
+    border-width: 2px;
+}
+.form1-holder{
+  text-align: center;
+}
+.form2-holder{
+  min-width:100%;
+  min-height:100%;
+}
+.coveringCanvas{
+  display: block;
+  z-index: 1;
+  position: absolute;
+}
+.progress{
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
